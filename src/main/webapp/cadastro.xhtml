@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+<ui:composition template="/estrutura.xhtml">
+	<ui:define name="title">JSF Blog | Cadastro</ui:define>
+	<div class="large-12 columns">
+		<ui:define name="content">
+
+</ui:define>
+<h:head>
+	<title>Cadastro</title>
+</h:head>
+
+		<h:form>
+		
+			 <h3>Cadastro </h3><br/>
+			<h:outputLabel for="nome" value="Nome:" /> 
+			<h:inputText id="nome" value="#{usuarioBean.nome}" /> 
+			<h:outputLabel for="email" value="Email:" />
+			<h:inputText id="email" value="#{usuarioBean.email}" /> 
+			<h:outputLabel for="senha" value="Senha:" />
+			<h:inputText id="senha" value="#{usuarioBean.senha}" /> 
+			<h:commandButton value="Cadastre-se" action="#{usuarioBean.cadastro()}" />
+		</h:form>
+	</div>
+</ui:composition>
+</html>

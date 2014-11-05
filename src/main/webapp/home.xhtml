@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+
+<ui:composition template="/estrutura.xhtml">
+	<ui:define name="title">JSF Blog | Postagens</ui:define>
+	<div class="large-12 columns">
+		<ui:define name="content">
+			<h3>Lista de Postagens</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Titulo da Postagem</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat value="#{postarBean.postagens}" var="post">
+						<h:form>
+							<tr>
+								<td>#{postarBean.titulo}</td>
+								<td><pretty:link mappingId="comentario">
+										<f:param value="#{postagem.id}" />
+                                	 Comentários
+                                </pretty:link></td>
+								<td><h:commandLink value="Deletar"
+										action="#{postarBean.deletar(postagem)}"
+										styleClass="button radius small alert" /></td>
+							</tr>
+						</h:form>
+					</ui:repeat>
+				</tbody>
+			</table>
+			
+		</ui:define>
+	</div>
+</ui:composition>
+</html>
