@@ -4,11 +4,16 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+	
 
 <ui:composition template="/estrutura.xhtml">
 	<ui:define name="title">JSF Blog | Postagens</ui:define>
 	<div class="large-12 columns">
-		<ui:define name="content">
+		<ui:define name="direita">
+			<h:messages infoClass="info" errorClass="erro" warnClass="warn"
+			fatalClass="fatal" />
+		</ui:define>
+		
 			<h3>Lista de Postagens</h3>
 			<table>
 				<thead>
@@ -20,24 +25,29 @@
 					</tr>
 				</thead>
 				<tbody>
-					<ui:repeat value="#{postarBean.postagens}" var="post">
-						<h:form>
-							<tr>
-								<td>#{postarBean.titulo}</td>
-								<td><pretty:link mappingId="comentario">
-										<f:param value="#{postagem.id}" />
-                                	 Comentários
-                                </pretty:link></td>
-								<td><h:commandLink value="Deletar"
-										action="#{postarBean.deletar(postagem)}"
-										styleClass="button radius small alert" /></td>
-							</tr>
-						</h:form>
-					</ui:repeat>
+					<c:if test="${not empty usuarioLogado}">Logado como ${usuarioLogado.email}<br/></c:if>
+
+
+	<h1>Postagens</h1>
+	<br />
+
+	<c:if test="${not empty postagens}">
+
+		<div style='margin-top: 4px; margin-bottom: 5px; margin-left: 50px; margin-right: 50px;'>
+			<ul>
+				<c:forEach var="postagem" items="${postarBean.lista()}">
+					<br />
+					<li><font color="teal">${postagem.titulo}<br /></font>
+						${postagem.texto } <br /> 
+						<a href="http://localhost:8080/mostraPost?idDoPost=${postagem.id}">Comentários</a><br />
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>
 				</tbody>
 			</table>
 			
-		</ui:define>
 	</div>
 </ui:composition>
 </html>

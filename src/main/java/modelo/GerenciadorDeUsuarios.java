@@ -6,7 +6,7 @@ import persistencia.UsuarioDAO;
 
 public class GerenciadorDeUsuarios {
 	
-	private UsuarioDAO dao;
+	private UsuarioDAO dao = new UsuarioDAO();
 		
 	public void cadastrarUsuario(Usuario usuario) {
 		dao.create(usuario);

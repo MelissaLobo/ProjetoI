@@ -8,30 +8,29 @@
 
 <ui:composition template="/estrutura.xhtml">
 	<ui:define name="title">JSF Blog | Nova Postagem</ui:define>
-
 	<div class="large-12 columns">
-		<ui:define name="content">
-			<div class="small-8">
-				<h3>Nova Postagem</h3>
-
-				<h:messages errorClass="alert-box alert radius" />
-				<h:form prependId="false">
-					<div class="row">
-						<div class="small-3 columns">
-							<label for="titulo" class="right inline">Titulo</label>
-						</div>
-						<div class="small-9 columns">
-							<h:inputText id="titulo" value="#{postarBean.titulo}" />
-							<p>
-								<h:commandButton value="Postar" type="submit"
-									action="#{postarBean.salvarPost(postarBean.postagem)}"
-									styleClass="button radius" />
-							</p>
-						</div>
-					</div>
-				</h:form>
-			</div>
+		<ui:define name="direita">
+			<h:messages infoClass="info" errorClass="erro" warnClass="warn"
+			fatalClass="fatal" />
 		</ui:define>
+	
+		<h:head>
+			<title>Postar</title>
+		</h:head>
+
+		<h:form>
+
+			<h3>Nova Postagem</h3>
+			<br/>
+			<h:outputLabel for="titulo" value="Titulo:" /> 
+			<h:inputText id="titulo" value="#{postarBean.titulo}" > Titulo da postagem</h:inputText>
+			<br />
+			<h:inputTextarea id="texto" value="#{postarBean.texto}" rows="50"
+				cols="80" maxlength="50000">Conteudo da postagem</h:inputTextarea>
+				<br /><br />
+			<h:commandButton value="Publicar" action="#{postarBean.salvarPost()}" />
+			<br />
+		</h:form>
 	</div>
 </ui:composition>
 

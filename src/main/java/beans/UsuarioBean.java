@@ -1,41 +1,39 @@
 package beans;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 
 import modelo.GerenciadorDeUsuarios;
+import modelo.Postagem;
 import modelo.Usuario;
 import util.JpaUseful;
 
 @ManagedBean
 public class UsuarioBean {
 
-	private GerenciadorDeUsuarios funcao;
+	private GerenciadorDeUsuarios funcao = new GerenciadorDeUsuarios();
 	private Usuario usuario;
 	private String nome;
 	private String email;
 	private String senha;
-	
-	public UsuarioBean(){}
-	
-	public void cadastrar(){
-		EntityManager entityManager = JpaUseful.getEntityManager(); 
-		entityManager.getTransaction().begin();
-		Usuario user = new Usuario(nome, email, senha);
-		entityManager.persist(user);
-		entityManager.getTransaction().commit();
-		entityManager.close();
+		
+	public UsuarioBean(){
 	}
 	
 	public String cadastro(){
 		Usuario user = new Usuario(nome, email, senha);
-		funcao.cadastrarUsuario(user);
-		return "pretty:login";
+		funcao.cadastrarUsuario(user);	
+		return "/login";
 	}
 	
-	public String logar(Usuario usuario){
+	public String logar(){
 		funcao.logar(usuario);
-		 return "pretty:home";
+		 return "/home";
+	}
+	public String deslogar(){
+		return "/login";
 	}
 	
 	public String getNome() {
@@ -64,6 +62,6 @@ public class UsuarioBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	
 }

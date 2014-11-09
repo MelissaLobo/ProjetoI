@@ -11,8 +11,8 @@ import modelo.Usuario;
 @ManagedBean
 public class PostarBean {
 	
-	private Blog funcao;
-	private String titulo="egg";
+	private Blog funcao = new Blog();
+	private String titulo;
 	private String texto;
 	private Postagem postagem = new Postagem();
 	private List<Postagem> postagens;
@@ -26,12 +26,18 @@ public class PostarBean {
 	
 	public String salvarPost(Usuario usuario){
 		funcao.adicionarPostagem(titulo, texto, usuario);
-		 return "pretty:home";
+		 return "/home";
 	}
 	
 	public String deletar(){
 		funcao.deletarPostagem(postagem);
-		return "pretty:home";
+		return "/home";
+	}
+	
+	public List<Postagem> lista(){
+		funcao.listaTodos();
+		return postagens;
+		
 	}
 	public List<Postagem> getPostagens() {
 		return postagens;
